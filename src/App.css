@@ -1,0 +1,57 @@
+#root {
+  font-family:Helvetica;
+}
+
+/* APPBAR */
+.container-appBar{
+  background-color:#d295c8;
+  padding:16px;
+  display:flex;
+  justify-content:space-between;
+  font-family:Helvetica;
+}
+
+.logo{
+  background-color:#CD168A;
+  font-size:0.875em;
+  font-weight:bold;
+  color:#7BDA97;
+  padding:8px 16px;
+  border-radius:15px;
+}
+
+.logo a{
+  cursor:pointer;
+}
+
+.menu{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#C6007D;
+  font-weight:bold;
+}
+
+.menu a{
+  cursor:pointer;
+  font-size:.875em;
+}
+
+.menu a:hover{
+  color:#25452E;
+
+}
+
+@media(width>600px){
+  .logo{
+    font-size: 1em;
+  }
+  .container{
+  padding:16px 32px;
+
+  }
+  .menu{
+    font-size:1.1em;
+    gap: 16px;
+  }
+}

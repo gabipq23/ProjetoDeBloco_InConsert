@@ -1,0 +1,14 @@
+.conteudo{
+    max-height:0;
+    overflow:hidden;
+    transition: all 0.5s cubic-bezier(0,1,0,1);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+    
+  .conteudo.show{
+    height:auto;
+    max-height:9999px;
+    transition: all 0.5s cubic-bezier(1,0,1,0);
+  }
