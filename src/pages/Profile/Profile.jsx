@@ -10,26 +10,23 @@ export function Profile(){
 
   const user = useAuthStore((state) => state.user);
   const logout = useAuthStore((state) => state.logout);
-  const [numPosts, setNumPosts] = useState(0);
+  const  [numPosts, setNumPosts ] = useState(0);
   const [ pontos, setPontos ] = useState(0)
-
-
 
   useEffect(() => {
     const fetchPosts = async () => {
       if(user){
       try {
-        const q = query(collection(db, "posts"), where("userId", "==", user.uid));
-          const querySnapshot = await getDocs(q);
-          const postsData = querySnapshot.docs.map(doc => ({id:doc.id, ...doc.data()}));
-        setNumPosts(postsData.length);
+        const consultaDados = await getDocs(query(collection(db, "posts"), where("userId", "==", user.uid)));
+        const dadosPosts = consultaDados.docs.map(doc => ({id:doc.id, ...doc.data()}));
+        setNumPosts(dadosPosts.length);
         let somaDePontos = 0
-        for(let i=0;i<postsData.length; i++){
-          somaDePontos += postsData[i].pontos || 0
+        for(let i=0;i<dadosPosts.length; i++){
+          somaDePontos += dadosPosts[i].pontos || 0
         }
         setPontos(somaDePontos)
       } catch (error) {
-        console.error('Erro ao buscar posts: ', error);
+        console.log('Erro ao buscar posts: ', error);
       }
     }
     };
@@ -40,13 +37,7 @@ export function Profile(){
   const handleLogout = async() => {
     await logout()
   }
-
-  if (!user) {
-    return <div>Please log in.</div>;
-  }
-
   return (
-
 
   <div className="h-full">
 
@@ -90,7 +81,7 @@ export function Profile(){
 
       <Link to="/posts">
       <div className="flex items-center justify-center m-2">
-      <button className="bg-[#CD168A] hover:bg-[#EE5DB6] px-5 py-1 rounded-2xl text-[#EAEAEA]">Ver Posts</button>
+      <button className="bg-[#CD168A] hover:bg-[#EE5DB6] px-5 py-1 rounded-2xl text-[#EAEAEA]">Ver Meus Posts</button>
       </div>
       </Link> 
 

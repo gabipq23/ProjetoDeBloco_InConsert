@@ -4,19 +4,18 @@ import { db } from '../../firebase';
 import  {Card} from '../../components/Card/Card'
 import styles from './PostList.module.css'
 
-export function PostsList(props){
-  const [posts, setPosts] = useState([]);
-  const [filtro, setFiltro] = useState('')
-
+export function PostsList(props) {
+  const [ posts, setPosts ] = useState([]);
+  const [ filtro, setFiltro ] = useState('')
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, 'posts'));
-        const postsData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        setPosts(postsData);
+        const consultaDados = await getDocs(collection(db, 'posts'));
+        const dadosPosts = consultaDados.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setPosts(dadosPosts);
       } catch (error) {
-        console.error('Erro ao buscar posts: ', error);
+        console.log('Erro ao buscar posts: ', error);
       }
     };
 
@@ -37,12 +36,6 @@ export function PostsList(props){
 }
 
   return (
-    // <div>
-    //   <h1>Todos os Posts</h1>
-    //   {posts.map(post => (
-    //     <div key={post.id} className="post">
-    //       <h2>{post.title}</h2>
-      
 
     <div className={styles["container"]}>
 
@@ -66,5 +59,4 @@ export function PostsList(props){
     </div>
   );
 }
-
-export default PostsList;
+export default PostsList

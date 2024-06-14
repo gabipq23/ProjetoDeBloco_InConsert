@@ -8,7 +8,12 @@ import AddPost from './pages/AddPost/AddPost';
 import PostsList from './pages/PostsList/PostsList';
 import {Footer}  from './components/Footer';
 
+import useAuthStore from './store/AuthStore';
+
+
 function App() {
+
+  const user = useAuthStore((state) => state.user);
 
   return (
 
@@ -20,7 +25,8 @@ function App() {
           </div>
           <nav className="menu">
             <Link to='/'>Home</Link>
-            <Link to='/profile'>Profile</Link>
+            {user ?  <Link to='/profile'>Profile</Link> : null}
+           
             <Link data-cy="menu_post" to='/postsList'>Publicações</Link>
           </nav>
         </header>

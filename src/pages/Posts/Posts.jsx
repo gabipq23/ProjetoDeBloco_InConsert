@@ -7,11 +7,10 @@ import  {Card} from '../../components/Card/Card'
 import styles from './Posts.module.css'
 
 export function Posts(props){
-  const [posts, setPosts] = useState([]);
-  const [filtro, setFiltro] = useState('')
-
-  const [message, setMessage] = useState(null);
-  const [isLoading, setLoading] = useState(true);
+  const [ posts, setPosts ] = useState([]);
+  const [ filtro, setFiltro ] = useState('')
+  const [ message, setMessage ] = useState(null);
+  const [ isLoading, setLoading ] = useState(true);
 
   const user = useAuthStore((state) => state.user);
 
@@ -19,12 +18,10 @@ export function Posts(props){
     const fetchPosts = async () => {
       if (user) {
         try {
-          const q = query(collection(db, "posts"), where("userId", "==", user.uid));
-          const querySnapshot = await getDocs(q);
-          const postsData = querySnapshot.docs.map(doc => ({id:doc.id, ...doc.data()}));
-          console.log(postsData.length)
-          setPosts(postsData);
-          
+          const consultaDados = await getDocs(query(collection(db, "posts"), where("userId", "==", user.uid)));
+          const dadosPosts = consultaDados.docs.map(doc => ({id:doc.id, ...doc.data()}));
+          console.log(dadosPosts.length)
+          setPosts(dadosPosts);
         } catch (erro) {
           setMessage(erro.message)
         }finally{
@@ -36,9 +33,8 @@ export function Posts(props){
   }, [user]);
 
   const removerPost = async(postId)=>{
-    const ref = doc(db,'posts',postId)
     try {
-      await deleteDoc(ref)
+      await deleteDoc(doc(db,'posts',postId))
       setPosts(posts => posts.filter(post => post.id !== postId))
       setMessage('post deletado')
     } catch(error){
@@ -46,7 +42,6 @@ export function Posts(props){
     }finally{
       setLoading(false)
     }
-  
   }
 
   function filterPostsList(){
@@ -82,7 +77,7 @@ export function Posts(props){
     </div>}
 
     {posts && filterPostsList().map((post) => 
-      <Card key={post.title} post={post} onDeletePost={removerPost} />
+      <Card key={post.titulo} post={post} onDeletePost={removerPost} />
     )}
 
    
@@ -96,5 +91,4 @@ export function Posts(props){
     </div>
   );
 }
-
-export default Posts;
+export default Posts

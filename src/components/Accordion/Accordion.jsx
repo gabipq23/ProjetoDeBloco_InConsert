@@ -12,8 +12,8 @@ import { db } from '../../firebase';
 export function Accordion(){
  
   const user = useAuthStore((state) => state.user);
-  const [posts, setPosts] = useState([])
-  const [selected, setSelected]  = useState(null);
+  const [ posts, setPosts ] = useState([])
+  const [ selected, setSelected ]  = useState(null);
   
     const toggle = (i) =>{
       if(selected == i){
@@ -26,18 +26,14 @@ export function Accordion(){
       const fetchPosts = async () => {
         if(user){
         try {
-          const q = query(collection(db, "posts"), where("userId", "==", user.uid));
-            const querySnapshot = await getDocs(q);
-            const postsData = querySnapshot.docs.map(doc => ({id:doc.id, ...doc.data()}));
-          setPosts(postsData);
-         
-         
+          const consultaDados = await getDocs(query(collection(db, "posts"), where("userId", "==", user.uid)));
+          const dadosPosts = consultaDados.docs.map(doc => ({id:doc.id, ...doc.data()}));
+          setPosts(dadosPosts);
         } catch (error) {
-          console.error('Erro ao buscar posts: ', error);
+          console.log('Erro ao buscar posts: ', error);
         }
       }
       };
-  
       fetchPosts();
     }, []);
 
@@ -52,7 +48,6 @@ export function Accordion(){
                     <FiAward size='20px'  />
                     <p>Prêmios</p>
                     </div>
-                    
                     <span>{selected == 0 ? <MdOutlineKeyboardArrowUp /> : <MdOutlineKeyboardArrowDown />}</span>
                  
                 </div>
@@ -82,7 +77,6 @@ export function Accordion(){
                   
                   <div className='flex items-center gap-2'>
                   <FaRankingStar size='20px'  />
-                  
                   <p>Ranking</p>
                   
                   </div>
@@ -112,11 +106,12 @@ export function Accordion(){
                   <span>{selected == 2 ? <MdOutlineKeyboardArrowUp /> : <MdOutlineKeyboardArrowDown />}</span>
               
               </div>
-             {posts && posts.map((post) => 
+             {posts && 
+             posts.map((post) => 
               <div key={post.id} className={selected == 2 ? 'conteudo show' : 'conteudo'}>
                 <div className='flex flex-col p-2 gap-1 border-b-2'>
                   <p>Artista: {post.artista} </p>
-                  <p>{post.title}</p>
+                  <p>{post.titulo}</p>
                 </div>
               </div>
              )}

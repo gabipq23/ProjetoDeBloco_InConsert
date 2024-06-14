@@ -2,12 +2,11 @@ import { useState } from 'react';
 import { db } from '../../firebase';
 import { collection, addDoc } from "firebase/firestore";
 import useAuthStore from '../../store/AuthStore';
-import {Link} from 'react-router-dom';
 import styles from './AddPost.module.css'
 
+export function AddPost() {
 
-const AddPost = () => {
-  const [title, setTitle] = useState('');
+  const [ titulo, setTitulo ] = useState('');
   const [ artista, setArtista ] = useState('')
   const [ descricao, setDescricao ] = useState('')
   const [ local, setLocal ] = useState('')
@@ -19,10 +18,9 @@ const AddPost = () => {
   const user = useAuthStore((state) => state.user);
 
   const handleSubmit = async () => {
-  
     try {
-      const docRef = await addDoc(collection(db, "posts"), {
-        title: title,
+      await addDoc(collection(db, "posts"), {
+        titulo: titulo,
         userId: user.uid ,
         artista:artista,
         descricao:descricao,
@@ -31,9 +29,11 @@ const AddPost = () => {
         pontos:pontos,
         likes:likes
       });
-      console.log("Document written with ID: ", docRef.id);
-     
-      setTitle('');
+      setArtista('')
+      setDescricao('')
+      setLocal('')
+      setData('')
+      setTitulo('');
     } catch (error) {
       console.error("Error adding document: ", error);
     }
@@ -42,20 +42,16 @@ const AddPost = () => {
   const adicionarPontos = () => {
     setPontos(25)
   }
-
   
   const handleClick = () =>{
 
     handleSubmit()
-
     adicionarPontos()
 }
-
 
   if (!user) {
     return <div>Please log in to see add posts.</div>;
   }
-
 
   return (
     <div className={styles["container"]}>
@@ -69,8 +65,8 @@ const AddPost = () => {
               <label htmlFor='titulo'>Titulo: </label>
           <input
             type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            value={titulo}
+            onChange={(e) => setTitulo(e.target.value)}
           />
           </div>
 
@@ -94,9 +90,6 @@ const AddPost = () => {
               <input type="text" className={styles["descricao"]} id='descricao' value={descricao} onChange={(e) => {setDescricao(e.target.value)}}></input>
             </div>
 
-
-        
-
           <div className={styles["buttonContainer"]}>
         <button className={styles["buttonNew"]} onClick={handleClick}>Add Post</button>
         </div>
@@ -104,6 +97,6 @@ const AddPost = () => {
         </section>
     </div>
   );
-};
+}
 
-export default AddPost;
+export default AddPost
