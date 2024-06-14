@@ -6,7 +6,7 @@ import styles from './AddPost.module.css'
 
 export function AddPost() {
 
-  const [ titulo, setTitulo ] = useState('');
+  const [ titulo, setTitulo ] = useState('')
   const [ artista, setArtista ] = useState('')
   const [ descricao, setDescricao ] = useState('')
   const [ local, setLocal ] = useState('')
@@ -15,13 +15,13 @@ export function AddPost() {
   const [ pontos, setPontos ] = useState(25)
   const [ likes, setLikes ] = useState(0)
 
-  const user = useAuthStore((state) => state.user);
+  const usuario = useAuthStore((state) => state.usuario)
 
   const handleSubmit = async () => {
     try {
       await addDoc(collection(db, "posts"), {
         titulo: titulo,
-        userId: user.uid ,
+        userId: usuario.uid ,
         artista:artista,
         descricao:descricao,
         local:local,
@@ -35,7 +35,7 @@ export function AddPost() {
       setData('')
       setTitulo('');
     } catch (error) {
-      console.error("Error adding document: ", error);
+      console.log("Error adding document: ", error)
     }
   };
 
@@ -44,14 +44,9 @@ export function AddPost() {
   }
   
   const handleClick = () =>{
-
     handleSubmit()
     adicionarPontos()
 }
-
-  if (!user) {
-    return <div>Please log in to see add posts.</div>;
-  }
 
   return (
     <div className={styles["container"]}>
@@ -96,7 +91,7 @@ export function AddPost() {
 
         </section>
     </div>
-  );
+  )
 }
 
 export default AddPost

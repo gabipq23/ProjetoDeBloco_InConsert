@@ -8,35 +8,35 @@ import { db } from '../../firebase';
 
 export function Profile(){
 
-  const user = useAuthStore((state) => state.user);
-  const logout = useAuthStore((state) => state.logout);
-  const  [numPosts, setNumPosts ] = useState(0);
+  const usuario = useAuthStore((state) => state.usuario)
+  const logout = useAuthStore((state) => state.logout)
+  const [ numPosts, setNumPosts ] = useState(0)
   const [ pontos, setPontos ] = useState(0)
 
   useEffect(() => {
     const fetchPosts = async () => {
-      if(user){
+      if(usuario){
       try {
-        const consultaDados = await getDocs(query(collection(db, "posts"), where("userId", "==", user.uid)));
-        const dadosPosts = consultaDados.docs.map(doc => ({id:doc.id, ...doc.data()}));
-        setNumPosts(dadosPosts.length);
+        const consultaDados = await getDocs(query(collection(db, "posts"), where("userId", "==", usuario.uid)))
+        const dadosPosts = consultaDados.docs.map(doc => ({id:doc.id, ...doc.data()}))
+        setNumPosts(dadosPosts.length)
         let somaDePontos = 0
         for(let i=0;i<dadosPosts.length; i++){
           somaDePontos += dadosPosts[i].pontos || 0
         }
         setPontos(somaDePontos)
       } catch (error) {
-        console.log('Erro ao buscar posts: ', error);
+        console.log('Erro ao buscar posts: ', error)
       }
-    }
-    };
+    }}
 
-    fetchPosts();
-  }, []);
+    fetchPosts()
+  }, [])
 
   const handleLogout = async() => {
     await logout()
   }
+
   return (
 
   <div className="h-full">
@@ -47,7 +47,7 @@ export function Profile(){
       <img className="rounded-full w-20 h-20" src="./src/assets/gabriela.png"></img>
     <div className="flex gap-2 items-center p-2">
 
-      {user.uid === 'GQfmG0Arw5dnicvhpNXDQQwesHe2' ? <p className="text-[#25452E] text-lg">Nome: Gabi</p> : <p className="text-[#25452E] text-lg">Nome: Ana</p>}
+      {usuario.uid === 'GQfmG0Arw5dnicvhpNXDQQwesHe2' ? <p className="text-[#25452E] text-lg">Nome: Gabi</p> : <p className="text-[#25452E] text-lg">Nome: Ana</p>}
       <FaAward  />
     </div>
     </div>
@@ -96,4 +96,4 @@ export function Profile(){
   )
 }
 
-export default Profile;
+export default Profile

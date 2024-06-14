@@ -7,30 +7,30 @@ import  {Card} from '../../components/Card/Card'
 import styles from './Posts.module.css'
 
 export function Posts(props){
-  const [ posts, setPosts ] = useState([]);
-  const [ filtro, setFiltro ] = useState('')
-  const [ message, setMessage ] = useState(null);
-  const [ isLoading, setLoading ] = useState(true);
 
-  const user = useAuthStore((state) => state.user);
+  const [ posts, setPosts ] = useState([])
+  const [ filtro, setFiltro ] = useState('')
+  const [ message, setMessage ] = useState(null)
+  const [ isLoading, setLoading ] = useState(true)
+
+  const usuario = useAuthStore((state) => state.usuario);
 
   useEffect(() => {
     const fetchPosts = async () => {
-      if (user) {
+      if (usuario) {
         try {
-          const consultaDados = await getDocs(query(collection(db, "posts"), where("userId", "==", user.uid)));
-          const dadosPosts = consultaDados.docs.map(doc => ({id:doc.id, ...doc.data()}));
-          console.log(dadosPosts.length)
-          setPosts(dadosPosts);
+          const consultaDados = await getDocs(query(collection(db, "posts"), where("userId", "==", usuario.uid)))
+          const dadosPosts = consultaDados.docs.map(doc => ({id:doc.id, ...doc.data()}))
+          setPosts(dadosPosts)
         } catch (erro) {
           setMessage(erro.message)
         }finally{
           setLoading(false)
         }
       }
-    };
-    fetchPosts();
-  }, [user]);
+    }
+    fetchPosts()
+  }, [usuario])
 
   const removerPost = async(postId)=>{
     try {
@@ -53,11 +53,7 @@ export function Posts(props){
         const artista = post.artista.toLowerCase()
         const local = post.local.toLowerCase()
         return artista.includes(palavra) || local.includes(palavra)})
-  }
-}
-
-  if (!user) {
-    return <div>Please log in to see your posts.</div>;
+    }
   }
 
   return (
@@ -79,7 +75,6 @@ export function Posts(props){
     {posts && filterPostsList().map((post) => 
       <Card key={post.titulo} post={post} onDeletePost={removerPost} />
     )}
-
    
     <div className={styles["buttonContainer"]}>
     <Link to='/addPost'>
@@ -87,8 +82,7 @@ export function Posts(props){
       </Link>
     </div>
     
-
     </div>
-  );
+  )
 }
 export default Posts

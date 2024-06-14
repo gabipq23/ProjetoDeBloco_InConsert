@@ -25,12 +25,12 @@ export function Card(props) {
   return (
     
     <div data-cy="post_card" className={styles["containerPosts"]}>
-      <p>Título: {post.titulo}</p>
-      <p>Artista: {post.artista}</p>
-      <p>Local: {post.local}</p>
-      <p>Data: {post.data}</p>
-      <p>Descrição: {post.descricao}</p>
-      {post.userId === 'GQfmG0Arw5dnicvhpNXDQQwesHe2' ? <p>Nome: Gabi</p> : <p>Nome: Ana</p>}
+      <p><strong>Título: </strong>{post.titulo}</p>
+      <p><strong>Artista: </strong>{post.artista}</p>
+      <p><strong>Local: </strong>{post.local}</p>
+      <p><strong>Data: </strong>{post.data}</p>
+      <p><strong>Descrição: </strong>{post.descricao}</p>
+      {post.userId === 'GQfmG0Arw5dnicvhpNXDQQwesHe2' ? <p><strong>Nome:</strong> Gabi</p> : <p><strong>Nome:</strong> Ana</p>}
   
       <div className={styles["icons"]}> 
         <span className={styles["iconItem"]}>

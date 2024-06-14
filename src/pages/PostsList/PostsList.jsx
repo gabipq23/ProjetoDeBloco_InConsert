@@ -5,23 +5,22 @@ import  {Card} from '../../components/Card/Card'
 import styles from './PostList.module.css'
 
 export function PostsList(props) {
-  const [ posts, setPosts ] = useState([]);
+
+  const [ posts, setPosts ] = useState([])
   const [ filtro, setFiltro ] = useState('')
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const consultaDados = await getDocs(collection(db, 'posts'));
-        const dadosPosts = consultaDados.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        setPosts(dadosPosts);
+        const consultaDados = await getDocs(collection(db, 'posts'))
+        const dadosPosts = consultaDados.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+        setPosts(dadosPosts)
       } catch (error) {
-        console.log('Erro ao buscar posts: ', error);
+        console.log('Erro ao buscar posts: ', error)
       }
-    };
-
-    fetchPosts();
-  }, []);
-
+    }
+    fetchPosts()
+  }, [])
   
   function filterPostsList(){
     if(!filtro){
@@ -32,8 +31,8 @@ export function PostsList(props) {
         const artista = post.artista.toLowerCase()
         const local = post.local.toLowerCase()
         return artista.includes(palavra) || local.includes(palavra)})
+    }
   }
-}
 
   return (
 
@@ -57,6 +56,6 @@ export function PostsList(props) {
     )}
 
     </div>
-  );
+  )
 }
 export default PostsList

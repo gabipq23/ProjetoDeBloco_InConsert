@@ -11,31 +11,31 @@ import { db } from '../../firebase';
 
 export function Accordion(){
  
-  const user = useAuthStore((state) => state.user);
+  const usuario = useAuthStore((state) => state.usuario)
   const [ posts, setPosts ] = useState([])
-  const [ selected, setSelected ]  = useState(null);
+  const [ selected, setSelected ]  = useState(null)
   
     const toggle = (i) =>{
       if(selected == i){
-        return setSelected(null);
+        return setSelected(null)
       }
       setSelected(i)
     }
 
     useEffect(() => {
       const fetchPosts = async () => {
-        if(user){
+        if(usuario){
         try {
-          const consultaDados = await getDocs(query(collection(db, "posts"), where("userId", "==", user.uid)));
-          const dadosPosts = consultaDados.docs.map(doc => ({id:doc.id, ...doc.data()}));
+          const consultaDados = await getDocs(query(collection(db, "posts"), where("userId", "==", usuario.uid)))
+          const dadosPosts = consultaDados.docs.map(doc => ({id:doc.id, ...doc.data()}))
           setPosts(dadosPosts);
         } catch (error) {
-          console.log('Erro ao buscar posts: ', error);
+          console.log('Erro ao buscar posts: ', error)
         }
       }
       };
-      fetchPosts();
-    }, []);
+      fetchPosts()
+    }, [])
 
     return(
         <div className="flex flex-col">

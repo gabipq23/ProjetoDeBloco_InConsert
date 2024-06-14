@@ -5,19 +5,19 @@ import styles from './Login.module.css'
 
 export function Login() {
 
-  const [ email, setEmail ] = useState('');
-  const [ senha, setSenha ] = useState('');
-  const [ loggedIn, setLoggedIn ] = useState(false); 
-  const login = useAuthStore((state) => state.login);
+  const [ email, setEmail ] = useState('')
+  const [ senha, setSenha ] = useState('')
+  const [ loggedIn, setLoggedIn ] = useState(false)
+  const login = useAuthStore((state) => state.login)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await login(email, senha);
-    setLoggedIn(true); 
+    await login(email, senha)
+    setLoggedIn(true)
   };
 
   if (loggedIn) {
-    return <Navigate to="/profile" />;
+    return <Navigate to="/profile" />
   }
 
   return (
@@ -44,7 +44,7 @@ export function Login() {
         </form>
       </div>
     </div>
-  );
+  )
 }
 
 export default Login
