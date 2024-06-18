@@ -6,6 +6,7 @@ import Posts from './pages/Posts/Posts';
 import Profile from './pages/Profile/Profile';
 import AddPost from './pages/AddPost/AddPost';
 import PostsList from './pages/PostsList/PostsList';
+import SignUp from './pages/SignUp/SignUp';
 import {Footer}  from './components/Footer';
 import useAuthStore from './store/AuthStore';
 
@@ -37,6 +38,8 @@ function App() {
           <Route path="/posts" element={<Posts /> } />
           <Route path="/addPost" element={<AddPost /> } />
           <Route path="/postsList" element={<PostsList /> } />
+          <Route path="/signUp" element={<SignUp /> } />
+
 
         </Routes>
         <Footer />

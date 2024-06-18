@@ -46,6 +46,9 @@ export default function Home() {
                   <Link to='/login'>                                
                       <button className="bg-[#CD168A] hover:bg-[#EE5DB6] px-5 py-1 rounded-2xl text-[#EAEAEA]">Login</button>
                   </Link>
+                  <Link to='/signUp'>                                
+                      <button className="bg-[#CD168A] hover:bg-[#EE5DB6] px-5 py-1 rounded-2xl text-[#EAEAEA]">Cadastrar</button>
+                  </Link>
                         
                   </div>
               </div>

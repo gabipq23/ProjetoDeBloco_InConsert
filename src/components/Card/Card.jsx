@@ -30,7 +30,7 @@ export function Card(props) {
       <p><strong>Local: </strong>{post.local}</p>
       <p><strong>Data: </strong>{post.data}</p>
       <p><strong>Descrição: </strong>{post.descricao}</p>
-      {post.userId === 'GQfmG0Arw5dnicvhpNXDQQwesHe2' ? <p><strong>Nome:</strong> Gabi</p> : <p><strong>Nome:</strong> Ana</p>}
+      <p><strong>Nome:</strong> {post.userName}</p>
   
       <div className={styles["icons"]}> 
         <span className={styles["iconItem"]}>

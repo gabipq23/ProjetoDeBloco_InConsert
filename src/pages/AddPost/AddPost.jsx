@@ -22,6 +22,7 @@ export function AddPost() {
       await addDoc(collection(db, "posts"), {
         titulo: titulo,
         userId: usuario.uid ,
+        userName: usuario.displayName ,
         artista:artista,
         descricao:descricao,
         local:local,
