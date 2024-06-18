@@ -46,29 +46,40 @@
 .lateral{
   display: none;
 }
-@media(width>=600px){
+
+@media(width>600px){
   .center{
     display: flex;
     background-color: #e6ccdb;
     margin: 36px 20px;
     border-radius: 10px;
-    width: 560px;
-    /* width: auto; */
-    justify-content: space-between;
-    border: solid 2px #e6ccdb;
+    max-width: 600px;
+    gap: 10px;
+    border: solid 4px #e6ccdb;
   }
   .lateral{
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 160px;
+    padding: 20px;
+  }
+  .lateral h1{
+    text-align: center;
+    color: #8a175a;
+    font-weight: bold;
+    font-size: 1.25em;
+  }
+  .lateral div {
+    text-align: center;
+    color: #8a175a;
+    font-size: 1.05em;
   }
   .container-signup{
-
     background-color: white;
-    
-
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-
     margin: 0;
   }
-   
 }

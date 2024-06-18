@@ -23,7 +23,17 @@ export function Login() {
   return (
 
     <div className={styles["container"]}>
-      <div >
+     <div className={styles["center"]}>
+        
+        <div  className={styles["lateral"]}>
+  
+          <h1>Bem-vindo</h1>
+          <div>
+            <p>Faça login </p>
+            <p>para continuar </p>
+          </div>
+  
+          </div>
         <form onSubmit={handleSubmit} className={styles["container-login"]}>
             <div className={styles["container-img"]}>
               <img src='./src/assets/logo.png'></img>

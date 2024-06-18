@@ -60,9 +60,6 @@ export function Accordion(){
                   <p>Par de ingressos na Tickets4Fun</p>
                   </div>
                   <div className='flex flex-col p-2 gap-1 border-b-2'>
-                  <p>Copo personalizado</p>
-                  </div>
-                  <div className='flex flex-col p-2 gap-1 border-b-2'>
                   <p>Poster da sua banda preferida</p>
                   </div>
                 </div>
