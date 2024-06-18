@@ -44,7 +44,7 @@ export function Profile(){
     <div className="flex gap-5 flex-col items-center h-[280px] bg-[#EEE5EA] justify-center">
 
     <div className="flex gap-1 flex-col items-center">
-      <img className="rounded-full w-20 h-20" src="./src/assets/gabriela.png"></img>
+      {/* <img className="rounded-full w-20 h-20" src="./src/assets/gabriela.png"></img> */}
     <div className="flex gap-2 items-center p-2">
       <p className="text-[#25452E] text-lg">{usuario.displayName}</p>
       <FaAward  />

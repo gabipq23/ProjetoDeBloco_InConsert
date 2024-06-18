@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import useAuthStore from "./store/AuthStore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDGDhrT-hZlgJJmKYFv8e0DuTjmZ6Vhjis",
@@ -14,5 +15,12 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
 const auth = getAuth(app)
+onAuthStateChanged(auth, (user) => {
+    if(user) {
+        useAuthStore.setState({usuario:user})
+    }else{
+        useAuthStore.setState({usuario:null})
+    }
+})
 
 export { db, auth }

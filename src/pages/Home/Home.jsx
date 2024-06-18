@@ -42,10 +42,7 @@ export default function Home() {
               <div className="bg-[#EAFDF0] p-4 rounded-2xl shadow">
                   <p>Quer fazer parte desse show?</p>
                   <div className="flex items-center justify-center m-2">
-
-                  <Link to='/login'>                                
-                      <button className="bg-[#CD168A] hover:bg-[#EE5DB6] px-5 py-1 rounded-2xl text-[#EAEAEA]">Login</button>
-                  </Link>
+                    
                   <Link to='/signUp'>                                
                       <button className="bg-[#CD168A] hover:bg-[#EE5DB6] px-5 py-1 rounded-2xl text-[#EAEAEA]">Cadastrar</button>
                   </Link>
