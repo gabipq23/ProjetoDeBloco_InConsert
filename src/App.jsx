@@ -17,6 +17,7 @@ function App() {
 
   return (
 
+    <div className="container-full">
       <Router>
         
         <header  className="container-appBar">
@@ -42,9 +43,11 @@ function App() {
 
 
         </Routes>
-        <Footer />
+        
 
       </Router>
+      <Footer />
+      </div>
     
   )
 }

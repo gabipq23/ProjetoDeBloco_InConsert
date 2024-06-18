@@ -1,6 +1,12 @@
 #root {
   font-family:Helvetica;
 }
+.container-full{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
 /* APPBAR */
 .container-appBar{
