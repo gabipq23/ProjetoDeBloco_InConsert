@@ -37,6 +37,7 @@ export function Profile(){
     await logout()
   }
 
+
   return (
 
   <div className="h-full">

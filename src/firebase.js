@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged} from "firebase/auth";
 import useAuthStore from "./store/AuthStore";
 
 const firebaseConfig = {

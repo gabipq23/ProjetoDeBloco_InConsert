@@ -10,16 +10,10 @@ const useAuthStore = create((set) => ({
       const novoUsuario = await createUserWithEmailAndPassword(auth, email, password)
       await updateProfile(novoUsuario.user, {displayName: nome})
       set({user: novoUsuario.user})
-     
-
-      console.log(novoUsuario.user)
-
     }catch(error){
       console.log(error)
     }
   },
-   
-  
   login: async (email, password) => {
     try {
       const dadosUsuario = await signInWithEmailAndPassword(auth, email, password)

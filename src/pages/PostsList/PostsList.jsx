@@ -53,7 +53,10 @@ export function PostsList(props) {
 
     {posts && filterPostsList().map((post) => 
       <Card key={post.id} post={post} />
+     
+      
     )}
+    
 
     </div>
   )

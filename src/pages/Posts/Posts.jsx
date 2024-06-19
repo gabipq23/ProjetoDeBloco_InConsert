@@ -5,7 +5,6 @@ import useAuthStore from '../../store/AuthStore';
 import { Link } from 'react-router-dom';
 import  {Card} from '../../components/Card/Card'
 import styles from './Posts.module.css'
-
 export function Posts(props){
 
   const [ posts, setPosts ] = useState([])
@@ -73,8 +72,12 @@ export function Posts(props){
     </div>}
 
     {posts && filterPostsList().map((post) => 
+
       <Card key={post.titulo} post={post} onDeletePost={removerPost} />
+      
+      
     )}
+
    
     <div className={styles["buttonContainer"]}>
     <Link to='/addPost'>
