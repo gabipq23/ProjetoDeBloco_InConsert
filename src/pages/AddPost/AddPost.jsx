@@ -36,7 +36,7 @@ export function AddPost() {
       setData('')
       setTitulo('');
     } catch (error) {
-      console.log("Error adding document: ", error)
+      console.log("Erro: ", error)
     }
   };
 

@@ -5,6 +5,7 @@ import useAuthStore from '../../store/AuthStore';
 import { Link } from 'react-router-dom';
 import  {Card} from '../../components/Card/Card'
 import styles from './Posts.module.css'
+
 export function Posts(props){
 
   const [ posts, setPosts ] = useState([])
@@ -58,33 +59,29 @@ export function Posts(props){
   return (
     <div className={styles["container"]}>
 
-    <div className={styles["title"]}>
-      <h2>Posts</h2>
-    </div>
+      <div className={styles["title"]}>
+        <h2>Posts</h2>
+      </div>
 
-    {isLoading && <div className={styles["loading"]} />}
-    {message && <p>{message}</p>}
+      {isLoading && <div className={styles["loading"]} />}
+      {message && <p>{message}</p>}
 
-    {posts &&
-    <div className={styles["filtro"]}>
-      <label htmlFor='inputSearch'>Filtro: </label>
-      <input value={filtro} onChange={(event) => setFiltro(event.target.value)} id='inputSearch' placeholder='Buscar um post'></input>
-    </div>}
+      {posts &&
+        <div className={styles["filtro"]}>
+          <label htmlFor='inputSearch'>Filtro: </label>
+          <input value={filtro} onChange={(event) => setFiltro(event.target.value)} id='inputSearch' placeholder='Buscar um post'></input>
+        </div>
+      }
 
-    {posts && filterPostsList().map((post) => 
+      {posts && filterPostsList().map((post) => 
+        <Card key={post.titulo} post={post} onDeletePost={removerPost} /> 
+      )}
 
-      <Card key={post.titulo} post={post} onDeletePost={removerPost} />
-      
-      
-    )}
-
-   
-    <div className={styles["buttonContainer"]}>
-    <Link to='/addPost'>
-      <button className={styles["buttonPlus"]}>+</button>
-      </Link>
-    </div>
-    
+      <div className={styles["buttonContainer"]}>
+        <Link to='/addPost'>
+          <button className={styles["buttonPlus"]}>+</button>
+        </Link>
+      </div>
     </div>
   )
 }

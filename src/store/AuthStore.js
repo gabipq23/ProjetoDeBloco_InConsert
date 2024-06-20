@@ -2,7 +2,6 @@ import { create } from 'zustand';
 import { auth } from '../firebase';
 import { signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 
-
 const useAuthStore = create((set) => ({
   user: null,
   signUp: async (email, password, nome) => {
@@ -11,7 +10,7 @@ const useAuthStore = create((set) => ({
       await updateProfile(novoUsuario.user, {displayName: nome})
       set({user: novoUsuario.user})
     }catch(error){
-      console.log(error)
+      console.log("Erro: ", error)
     }
   },
   login: async (email, password) => {
@@ -20,7 +19,7 @@ const useAuthStore = create((set) => ({
       const usuario = dadosUsuario.user
       set({ usuario })
     } catch (error) {
-      console.log("Login failed:", error)
+      console.log("Erro: ", error)
     }
   },
   logout: async () => {
@@ -28,7 +27,7 @@ const useAuthStore = create((set) => ({
       await signOut(auth)
       set({ user: null })
     } catch (error) {
-      console.log("Logout failed:", error)
+      console.log("Erro: ", error)
     }
   }
 }))

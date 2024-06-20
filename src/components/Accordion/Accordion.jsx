@@ -30,7 +30,7 @@ export function Accordion(){
           const dadosPosts = consultaDados.docs.map(doc => ({id:doc.id, ...doc.data()}))
           setPosts(dadosPosts);
         } catch (error) {
-          console.log('Erro ao buscar posts: ', error)
+          console.log('Erro: ', error)
         }
       }
       };

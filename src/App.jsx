@@ -10,7 +10,6 @@ import SignUp from './pages/SignUp/SignUp';
 import {Footer}  from './components/Footer';
 import useAuthStore from './store/AuthStore';
 
-
 function App() {
 
   const usuario = useAuthStore((state) => state.usuario);
@@ -41,14 +40,11 @@ function App() {
           <Route path="/postsList" element={<PostsList /> } />
           <Route path="/signUp" element={<SignUp /> } />
 
-
         </Routes>
         
-
       </Router>
       <Footer />
       </div>
-    
   )
 }
 

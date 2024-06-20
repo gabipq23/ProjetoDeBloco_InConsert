@@ -8,6 +8,7 @@ export function Login() {
   const [ email, setEmail ] = useState('')
   const [ senha, setSenha ] = useState('')
   const [ loggedIn, setLoggedIn ] = useState(false)
+  
   const login = useAuthStore((state) => state.login)
 
   const handleSubmit = async (e) => {

@@ -16,7 +16,7 @@ export function PostsList(props) {
         const dadosPosts = consultaDados.docs.map(doc => ({ id: doc.id, ...doc.data() }))
         setPosts(dadosPosts)
       } catch (error) {
-        console.log('Erro ao buscar posts: ', error)
+        console.log('Erro: ', error)
       }
     }
     fetchPosts()
@@ -38,26 +38,19 @@ export function PostsList(props) {
 
     <div className={styles["container"]}>
 
-    <div className={styles["title"]}>
-      <h2>Posts</h2>
-    </div>
+      <div className={styles["title"]}>
+        <h2>Posts</h2>
+      </div>
+      {posts &&
+        <div className={styles["filtro"]}>
+          <label htmlFor='inputSearch'>Filtro: </label>
+          <input value={filtro} onChange={(event) => setFiltro(event.target.value)} id='inputSearch' placeholder='Buscar um post'></input>
+        </div>
+      }
 
-    {/* {isLoading && <div className={styles["loading"]} />}
-    {message && <p>Erro: {message}</p>} */}
-
-    {posts &&
-    <div className={styles["filtro"]}>
-      <label htmlFor='inputSearch'>Filtro: </label>
-      <input value={filtro} onChange={(event) => setFiltro(event.target.value)} id='inputSearch' placeholder='Buscar um post'></input>
-    </div>}
-
-    {posts && filterPostsList().map((post) => 
-      <Card key={post.id} post={post} />
-     
-      
-    )}
-    
-
+      {posts && filterPostsList().map((post) => 
+        <Card key={post.id} post={post} />
+      )}
     </div>
   )
 }
